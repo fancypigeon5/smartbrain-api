@@ -11,11 +11,11 @@ import handleImageRecognition from './controllers/imageRecognition.js';
 const db = knex ({
     client: 'pg',
     connection: {
-        host : '127.0.0.1',
+        host : 'process.env.DATABASE_URL',
         port : 5432,
-        user : 'postgres',
-        password : 'test',
-        database : 'smartbrain'
+        user : 'process.env.DATABASE_USER',
+        password : 'process.env.DATABASE_PW',
+        database : 'process.env.DATABASE_DB'
     }
 });
 
