@@ -38,7 +38,7 @@ const handleImageRecognition = (req, res) => {
         .then(result => {
             res.json(result);
         })
-        .catch(err => res.status(400).json('err'))
+        .catch(err => res.status(400).json(err))
 }
 
 export default handleImageRecognition;

@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import knex from 'knex';
 import bcrypt from 'bcryptjs';
+import fetch from 'node-fetch';
 import handleRegister from './controllers/register.js';
 import handleSignIn from './controllers/signin.js';
 import handleImage from './controllers/image.js';
@@ -27,9 +28,7 @@ app.use(bodyParser.json());
 
 app.use(cors())
 
-app.get('/', (req, res)=> {
-    res.send(db.select('*').from('users'));
-})
+app.get('/', (req, res)=> {res.send(db.select('*').from('users'));})
 
 app.post('/signin', (req, res) => {handleSignIn(req, res, db, bcrypt)})
 
@@ -37,7 +36,7 @@ app.post('/register', (req, res) => {handleRegister(req, res, db, bcrypt)})
 
 app.put('/image', (req, res) => {handleImage(req, res, db)})
 
-app.post('/imageurl', (req, res) => {handleImageRecognition(req, res)})
+app.post('/imageurl', (req, res) => {handleImageRecognition(req, res, fetch)})
 
 
 app.listen(process.env.PORT || 3001, () => {
